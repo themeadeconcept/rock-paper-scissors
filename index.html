@@ -1,0 +1,84 @@
+<script>
+
+    //Computer Choice Sequence
+    function computerPlay() {
+        let compTurn = Math.floor(Math.random() * 3);
+
+        if (compTurn === 0) {
+            return "rock";
+        }
+        else if (compTurn === 1) {
+            return "paper";
+        }
+        else {
+            return "scissors";
+        }
+    }
+
+    //Player turn...you like what I did with the name though?
+    function playaPlay() {
+        let input = prompt("Please make a selection by typing Rock, Paper, or Scissors: ");
+        let playerChoice = input.toLowerCase();
+        
+        return playerChoice;
+    }
+
+    //Plays a round of rock, paper, scissors
+    function playRound(playerSelection, computerSelection) {
+        
+        if (playerSelection === "paper" && computerSelection === "rock") {
+            return "You Win!  Paper stays wrapping up rocks!";
+        }
+        else if (playerSelection === "paper" && computerSelection === "scissors") {
+            return "You Lose!  Computer Scissors chopped you up!";
+        }
+        else if (playerSelection === "paper" && computerSelection === "paper") {
+            return "Tie...";
+        }
+        else if (playerSelection === "rock" && computerSelection === "scissors") {
+            return "You Win!  Rocks always crushing scissors!";
+        }
+        else if (playerSelection === "rock" && computerSelection === "paper") {
+            return "You Lose!  That paper got you wrapped up!";
+        }
+        else if (playerSelection === "rock" && computerSelection === "rock") {
+            return "Tie...";
+        }
+        else if (playerSelection === "scissors" && computerSelection === "paper") {
+            return "You Win!  Scissors choppin' up paper!"
+        }
+        else if (playerSelection === "scissors" && computerSelection === "rock") {
+            return "You Lose!  Rocks always crushing scissors!";
+        }
+        else {
+            return "Tie...";
+        }
+    }
+
+    //onload will automatically run the function when the page loads
+    onload = function game() {
+        let playerCount = 0;
+        let compCount = 0;
+
+        for (let i = 0; i < 5; i++) {
+            let playerSelection = playaPlay();
+            let computerSelection = computerPlay();
+
+            let result = playRound(playerSelection, computerSelection);
+
+            if (result.includes("Win") === true) {
+                console.log(result);
+                playerCount++;
+            }
+            else if (result.includes("Lose") === true) {
+                console.log(result);
+                compCount++;
+            }
+            else {
+                console.log(result);
+            }
+            console.log("Player score is " + playerCount);
+            console.log("Computer score is " + compCount);
+        }
+    }
+</script>
